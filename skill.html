@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | SurajDev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      min-height: 100vh;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #38bdf8;
+    }
+
+    .skills-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      background: rgba(56,189,248,0.2);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+      color: #00c9ff;
+    }
+
+    .progress-bar {
+      position: relative;
+      width: 100%;
+      height: 25px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: #38bdf8;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+      font-weight: 600;
+      color: #0f172a;
+      transition: width 2s ease-in-out;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💻 My Skills</h1>
+
+  <div class="skills-container">
+    <div class="skill-card">
+      <h3>HTML5</h3>
+      <div class="progress-bar">
+        <span data-width="95%">95%</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>CSS3</h3>
+      <div class="progress-bar">
+        <span data-width="90%">90%</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <div class="progress-bar">
+        <span data-width="85%">85%</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>ReactJS</h3>
+      <div class="progress-bar">
+        <span data-width="80%">80%</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>NodeJS</h3>
+      <div class="progress-bar">
+        <span data-width="70%">70%</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Git & GitHub</h3>
+      <div class="progress-bar">
+        <span data-width="85%">85%</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animate progress bars on page load
+    const spans = document.querySelectorAll(".progress-bar span");
+
+    window.addEventListener("load", () => {
+      spans.forEach(span => {
+        const width = span.getAttribute("data-width");
+        span.style.width = width;
+      });
+    });
+  </script>
+
+</body>
+</html>

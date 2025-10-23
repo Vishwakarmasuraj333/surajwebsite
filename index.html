@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurajDev | Portfolio</title>
+  <style>
+    /* ---------- Base Styles ---------- */
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body {background:#0f172a;color:white;line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;border-radius:10px;}
+    section{padding:80px 20px;}
+    h1,h2{color:#38bdf8;text-align:center;margin-bottom:30px;}
+    h2{font-size:2rem;}
+    
+    /* ---------- Navbar ---------- */
+    nav{width:100%;height:70px;background:#1e293b;display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:fixed;top:0;left:0;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,0.4);}
+    nav .logo{font-size:24px;font-weight:700;color:#38bdf8;}
+    ul{list-style:none;display:flex;gap:20px;transition:0.4s;}
+    ul li a{padding:10px 18px;border-radius:10px;position:relative;overflow:hidden;font-weight:500;transition:0.3s;}
+    ul li a::before{content:'';position:absolute;width:0;height:100%;top:0;left:0;background:#38bdf8;z-index:-1;transition:0.3s;border-radius:10px;}
+    ul li a:hover::before{width:100%;}
+    ul li a:hover{color:#0f172a;font-weight:600;}
+    .login-btn{background:#38bdf8;color:#0f172a;font-weight:600;border-radius:10px;}
+    .login-btn:hover{background:#0ea5e9;color:white;box-shadow:0 0 15px #38bdf8;}
+    .menu-icon{display:none;flex-direction:column;cursor:pointer;width:30px;height:22px;justify-content:space-between;}
+    .menu-icon div{width:100%;height:4px;background:white;border-radius:2px;transition:all 0.4s ease;}
+    ul li a.active{background:#38bdf8;color:#0f172a;font-weight:600;}
+
+    @media(max-width:768px){
+      ul{position:absolute;top:70px;left:-100%;flex-direction:column;width:100%;height:calc(100vh-70px);background:#1e293b;align-items:start;justify-content:start;gap:30px;padding: 30px;}
+      ul.active{left:0;}
+      .menu-icon{display:flex;}
+      .menu-icon.open div:nth-child(1){transform:rotate(45deg) translateY(9px);}
+      .menu-icon.open div:nth-child(2){opacity:0;}
+      .menu-icon.open div:nth-child(3){transform:rotate(-45deg) translateY(-9px);}
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 20px;}
+    .hero h1{font-size:3rem;margin-bottom:15px;}
+    .hero p{font-size:1.2rem;margin-bottom:30px;color:#cbd5e1;}
+    .btn-hero{padding:12px 25px;background:#38bdf8;color:#0f172a;border:none;border-radius:10px;font-weight:600;transition:0.3s;}
+    .btn-hero:hover{background:#0ea5e9;color:white;box-shadow:0 0 15px #38bdf8;}
+
+    /* ---------- Skills ---------- */
+    .skills-container{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;}
+    .skill-card{background:rgba(255,255,255,0.05);border-radius:20px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,0.3);transition:0.3s;}
+    .skill-card:hover{transform:translateY(-10px);background:rgba(56,189,248,0.2);}
+    .skill-card h3{margin-bottom:15px;color:#00c9ff;}
+    .progress-bar{position:relative;width:100%;height:25px;background:rgba(255,255,255,0.2);border-radius:15px;overflow:hidden;}
+    .progress-bar span{position:absolute;left:0;top:0;height:100%;width:0;background:#38bdf8;border-radius:15px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-weight:600;color:#0f172a;transition:width 2s ease-in-out;}
+
+    /* ---------- About ---------- */
+    .about-container{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:30px;max-width:1000px;margin:0 auto;}
+    .about-container img{width:300px;}
+    .about-content{max-width:600px;}
+    .about-content h3{color:#00c9ff;margin-bottom:15px;}
+    .about-content p{margin-bottom:15px;line-height:1.5;}
+    .about-btn{display:inline-block;padding:10px 20px;background:#38bdf8;color:#0f172a;border-radius:10px;font-weight:600;margin-top:10px;}
+    .about-btn:hover{background:#0ea5e9;color:white;box-shadow:0 0 10px #38bdf8;}
+
+    /* ---------- Projects ---------- */
+    .projects-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;justify-content:center;}
+    .project-card{background:#2c2c54;border-radius:15px;padding:20px;box-shadow:0 0 10px rgba(0,0,0,0.4);text-align:center;transition:0.3s;}
+    .project-card:hover{transform:translateY(-10px);background:#373770;}
+    .project-card h3{margin:10px 0;color:#00c9ff;}
+    .project-card p{color:#ccc;font-size:0.9rem;margin-bottom:10px;}
+    .project-card a{display:inline-block;text-decoration:none;background:#00c9ff;color:#111;padding:8px 18px;border-radius:25px;font-weight:bold;transition:0.3s;}
+    .project-card a:hover{background:#00e0ff;color:#111;transform:scale(1.05);}
+
+    /* ---------- Contact ---------- */
+    .contact-container{max-width:700px;margin:0 auto;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:20px;padding:40px;box-shadow:0 8px 25px rgba(0,0,0,0.4);}
+    .contact-container form{display:flex;flex-direction:column;gap:20px;}
+    .contact-container input,.contact-container textarea{padding:12px 15px;border-radius:10px;border:none;outline:none;font-size:1rem;background:rgba(255,255,255,0.1);color:white;transition:0.3s;}
+    .contact-container input:focus,.contact-container textarea:focus{background:rgba(56,189,248,0.2);box-shadow:0 0 10px #38bdf8;}
+    .contact-container button{padding:12px 20px;background:#38bdf8;color:#0f172a;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:0.3s;}
+    .contact-container button:hover{background:#0ea5e9;color:white;box-shadow:0 0 15px #38bdf8;}
+
+    /* ---------- Footer ---------- */
+    footer{text-align:center;padding:20px 0;background:#1e293b;color:#38bdf8;margin-top:50px;}
+    footer a{color:#38bdf8;margin:0 10px;transition:0.3s;}
+    footer a:hover{color:#0ea5e9;}
+     .hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: #fff;
+  }
+
+  /* Overlay to darken image for text readability */
+  .hero-overlay {
+    background: rgba(0,0,0,0.5);
+    padding: 50px;
+    border-radius: 15px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+
+  .hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+
+  .cursor {
+    font-weight: bold;
+    color: #38bdf8;
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Suraj💻</div>
+    <ul id="navLinks">
+      <li><a href="#home." class="btn active">Home</a></li>
+      <li><a href="about.html" class="btn">About</a></li>
+      <li><a href="project.html" class="btn">Projects</a></li>
+      <li><a href="skill.html" class="btn">Skills</a></li>
+      <li><a href="contact.html" class="btn">Contact</a></li>
+      <li><a href="login.html" class="login-btn">Login</a></li>
+    </ul>
+    <div class="menu-icon" id="menuIcon">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+<section class="hero" id="home">
+  <div class="hero-overlay">
+    <h1>Hi, I'm Suraj Vishwakarma</h1>
+    <h2>I am a <span id="typed-text"></span><span class="cursor">|</span></h2>
+    <a href="#contact" class="btn-hero">Hire Me</a>
+  </div>
+</section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h1>💻 My Skills</h1>
+    <div class="skills-container">
+      <div class="skill-card"><h3>HTML5</h3><div class="progress-bar"><span data-width="95%">95%</span></div></div>
+      <div class="skill-card"><h3>CSS3</h3><div class="progress-bar"><span data-width="90%">90%</span></div></div>
+      <div class="skill-card"><h3>JavaScript</h3><div class="progress-bar"><span data-width="85%">85%</span></div></div>
+      <div class="skill-card"><h3>ReactJS</h3><div class="progress-bar"><span data-width="80%">80%</span></div></div>
+      <div class="skill-card"><h3>NodeJS</h3><div class="progress-bar"><span data-width="70%">70%</span></div></div>
+      <div class="skill-card"><h3>Git & GitHub</h3><div class="progress-bar"><span data-width="85%">85%</span></div></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h1>About Me</h1>
+    <div class="about-container">
+      <img src="https://avatars.githubusercontent.com/u/212504628?s=400&u=2e48c57bcb936f662429599802ffa422b1871452&v=4" alt="Suraj">
+      <div class="about-content">
+        <h3>Frontend Developer | JavaScript & React Specialist 💻</h3>
+        <p>Hi! I'm <b>Suraj Vishwakarma</b>, a passionate Frontend Developer from Mumbai. I love building interactive, modern, and visually stunning web apps using HTML, CSS, JS, and ReactJS.</p>
+        <p>I focus on responsive design and smooth UI interactions to create top-notch user experiences across all devices.</p>
+        <a href="#home" class="about-btn">← Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h1>🚀 My Projects</h1>
+    <div class="projects-container">
+      <div class="project-card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.03GA-0jeZlEilLYYBXzm5QHaGd?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="To-Do App">
+      <h3>📝 To-Do App</h3>
+      <p>Organize your daily tasks efficiently with this modern To-Do App.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <img src="https://cdn5.vectorstock.com/i/1000x1000/38/74/e-commerce-concept-vector-4163874.jpg" alt="E-Commerce Website">
+      <h3>🛒 E-Commerce Website</h3>
+      <p>Responsive online store with filtering, cart, and payment integration.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <img src="https://img.freepik.com/free-vector/realistic-weather-widget_1284-4092.jpg" alt="Weather App">
+      <h3>🌦️ Weather App</h3>
+      <p>Get real-time weather updates from any city using live APIs.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <img src="https://play-lh.googleusercontent.com/5ENdgpFsRhQt9y_ySp9UK_p-CL0TmhSwW5pKmmzzIW0OLFR3EvAtzAGm6c_IkkfgVg" alt="Tic Tac Toe Game">
+      <h3>🎮 Tic-Tac-Toe Game</h3>
+      <p>Play the classic game with smart AI and clean modern interface.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <img src="https://onaircode.com/wp-content/uploads/2017/08/Admin-theme-free-sample-download.jpg" alt="Dashboard">
+      <h3>📊 Admin Dashboard</h3>
+      <p>Interactive analytics dashboard with charts and live data reports.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <img src="https://i.ytimg.com/vi/c1zu2jvkWxs/maxresdefault.jpg" alt="Portfolio Website">
+      <h3>💻 Portfolio Website</h3>
+      <p>Modern personal portfolio showcasing your skills and projects.</p>
+      <a href="#">View Project</a>
+    </div>
+    <div class="project-card">
+  <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/69aac1150496925.62fb7bbd069da.png" alt="Movie Booking App">
+  <h3>🎬 Movie Booking App</h3>
+  <p>Book your favorite movies online with seat selection and payment integration.</p>
+  <a href="#">View Project</a>
+</div>
+<div class="project-card">
+  <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6d338e126898613.61371e660cd25.jpg" alt="Fitness Tracker App">
+  <h3>🏋️ Fitness Tracker App</h3>
+  <p>Track your workouts, calories, and progress with interactive charts and analytics.</p>
+  <a href="#">View Project</a>
+</div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h1>📬 Contact Me</h1>
+    <div class="contact-container">
+      <form action="#" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Suraj Vishwakarma | Designed by SurajDev 💻
+    <div>
+      <a href="https://github.com/Vishwakarmasuraj333" target="_blank">GitHub</a>|
+      <a href="https://www.linkedin.com/in/suraj-vishwakarma-/" target="_blank">LinkedIn</a>|
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+  <!-- JS for Navbar & Skills Animation -->
+  <script>
+    const menuIcon = document.getElementById('menuIcon');
+    const navLinks = document.getElementById('navLinks');
+
+    menuIcon.addEventListener('click', () => {
+      menuIcon.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+
+    const links = document.querySelectorAll('#navLinks li a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Animate Skills
+    const spans = document.querySelectorAll(".progress-bar span");
+    window.addEventListener("load", () => {
+      spans.forEach(span => {
+        const width = span.getAttribute("data-width");
+        span.style.width = width;
+      });
+    });
+      // Typing effect
+  const roles = [
+    "Frontend Developer",
+    "ReactJS Developer",
+    "JavaScript Enthusiast",
+    "UI/UX Designer"
+  ];
+
+  const typedText = document.getElementById("typed-text");
+  let roleIndex = 0;
+  let charIndex = 0;
+  let typingSpeed = 100;
+  let deletingSpeed = 50;
+  let delayBetweenRoles = 1500;
+
+  function typeRole() {
+    if (charIndex < roles[roleIndex].length) {
+      typedText.textContent += roles[roleIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeRole, typingSpeed);
+    } else {
+      setTimeout(deleteRole, delayBetweenRoles);
+    }
+  }
+
+  function deleteRole() {
+    if (charIndex > 0) {
+      typedText.textContent = roles[roleIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(deleteRole, deletingSpeed);
+    } else {
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(typeRole, typingSpeed);
+    }
+  }
+
+  // Start typing effect
+  typeRole();
+  </script>
+</body>
+</html>

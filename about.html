@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | SurajDev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .about-container {
+      max-width: 1100px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      flex-wrap: wrap;
+      gap: 40px;
+      transition: 0.3s;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 5px solid #38bdf8;
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 2 1 400px;
+    }
+
+    .about-content h1 {
+      font-size: 2.2rem;
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    .about-content h3 {
+      color: #cbd5e1;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      line-height: 1.8;
+      color: #e2e8f0;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .about-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #38bdf8;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .about-btn:hover {
+      background: #0ea5e9;
+      color: #fff;
+      box-shadow: 0 0 15px #38bdf8;
+    }
+
+    @media (max-width: 900px) {
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+      }
+
+      .about-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .about-image img {
+        width: 220px;
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="about-container">
+    <div class="about-image">
+      <img src="https://avatars.githubusercontent.com/u/212504628?s=400&u=2e48c57bcb936f662429599802ffa422b1871452&v=4" alt="Suraj">
+    </div>
+
+    <div class="about-content">
+      <h1>About Me</h1>
+      <h3>Frontend Developer | JavaScript & React Specialist 💻</h3>
+      <p>
+        Hi! I'm <b>Suraj Vishwakarma</b>, a passionate Frontend Developer from Mumbai.  
+        I love building interactive, modern, and visually stunning web applications using
+        HTML, CSS, JavaScript, and ReactJS.  
+        My goal is to create digital experiences that not only look great but also perform seamlessly on all devices.
+      </p>
+      <p>
+        With a strong focus on responsive design and smooth UI interactions,  
+        I enjoy turning creative ideas into reality and delivering top-notch user experiences.
+      </p>
+
+      <a href="index.html" class="about-btn">← Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>
